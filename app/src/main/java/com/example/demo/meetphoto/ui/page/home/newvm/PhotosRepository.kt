@@ -8,6 +8,7 @@ import java.io.IOException
 import com.dafay.demo.lib.base.net.Result
 import com.dafay.demo.lib.base.net.safeApiCall
 import com.example.demo.meetphoto.data.http.UnsplashService
+import com.example.demo.meetphoto.data.model.DownloadResponse
 import com.example.demo.meetphoto.data.model.Photo
 import kotlinx.coroutines.CoroutineDispatcher
 
@@ -40,6 +41,29 @@ class PhotosRepository(private val dispatcher: CoroutineDispatcher = Dispatchers
     suspend fun getLatestPhotos(page: Int, pageSize: Int): Result<List<Photo>?> {
         return safeApiCall(dispatcher) {
             RetrofitFamily.createService(UnsplashService::class.java).getPhotos1(page, pageSize)
+        }
+    }
+
+
+    /**
+     * 获取照片详情
+     * @param id
+     * @return
+     */
+    suspend fun getPhotoDetail(id: String): Result<Photo?> {
+        return safeApiCall(dispatcher) {
+            RetrofitFamily.createService(UnsplashService::class.java).getPhotoDetail(id)
+        }
+    }
+
+    /**
+     * 下载图片上报
+     * @param id
+     * @return
+     */
+    suspend fun photoDownload(id: String): Result<DownloadResponse?> {
+        return safeApiCall(dispatcher) {
+            RetrofitFamily.createService(UnsplashService::class.java).photoDownload1(id)
         }
     }
 }

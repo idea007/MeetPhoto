@@ -9,7 +9,7 @@ import com.lxj.xpopup.impl.LoadingPopupView
 /**
  * @ClassName LoadingDialogExt
  * @Description 加载弹窗工具类
- * @Author zhoudingjun
+ * @Author
  * @Date 2023/5/8 10:47
  */
 //loading框

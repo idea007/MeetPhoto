@@ -20,7 +20,6 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 class PhotoInfoBottomSheetDialogFragment : BottomSheetDialogFragment {
 
     private lateinit var binding: FragmentBottomSheetPhotoInfoBinding
-
     private val passPhoto: Photo
     private val listener: OnClickListener?
 
@@ -44,26 +43,10 @@ class PhotoInfoBottomSheetDialogFragment : BottomSheetDialogFragment {
             .into(binding.ivUser)
         binding.tvUserName.text = passPhoto.user?.name
 
-//        binding.tvFavorite.text = passPhoto.likes?.toString() ?: ""
-//        binding.tvDownload.text = passPhoto.downloads?.toString() ?: ""
-//        binding.tvVisibility.text = passPhoto.views?.toString() ?: ""
         binding.tvLikes.text = if ((passPhoto.likes ?: 0) > 0) NumberUtils.amountConversion((passPhoto.likes ?: 0) + 0.0) else "Unknow"
         binding.tvDownloads.text =
             if ((passPhoto.downloads ?: 0) > 0) NumberUtils.amountConversion((passPhoto.downloads ?: 0) + 0.0) else "Unknow"
         binding.tvViews.text = if ((passPhoto.views ?: 0) > 0) NumberUtils.amountConversion((passPhoto.views ?: 0) + 0.0) else "Unknow"
-//        val sbNums = StringBuilder()
-//        if ((passPhoto.likes ?: 0) > 0) {
-//            sbNums.append("Likes:${NumberUtils.amountConversion((passPhoto.likes?:0)+0.0)} ")
-//        }
-//        if ((passPhoto.downloads ?: 0) > 0) {
-//            sbNums.append("Downloads:${NumberUtils.amountConversion((passPhoto.downloads?:0)+0.0)} ")
-//        }
-//        if ((passPhoto.views ?: 0) > 0) {
-//            sbNums.append("Views:${NumberUtils.amountConversion((passPhoto.views?:0)+0.0)} ")
-//        }
-//        if (sbNums.toString().length > 0) {
-//            binding.tvNums.text = sbNums.toString()
-//        }
         if (passPhoto.description.isNullOrEmpty()) {
             binding.tvDes.visibility = View.GONE
             binding.mdDividerDes.visibility = View.GONE

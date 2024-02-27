@@ -40,6 +40,7 @@ object ExtraC {
     const val SETTINGS_INSTANCE_BOUND = "settings_instance_bound"
     const val SETTINGS_COLOR_THEME_SCROLL_X = "settings_color_theme_scroll_x"
     const val SETTINGS_SCROLL_Y = "settings_scroll_y"
+    const val PHOTO = "photo"
 }
 
 

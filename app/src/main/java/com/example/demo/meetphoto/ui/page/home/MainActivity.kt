@@ -21,9 +21,9 @@ import com.example.demo.meetphoto.databinding.ActivityMainBinding
 import com.example.demo.meetphoto.ui.base.NewBaseThemeActivity
 import com.example.demo.meetphoto.ui.helper.CommonMessage
 import com.example.demo.meetphoto.ui.page.home.adapter.HomeAdapter
-import com.example.demo.meetphoto.ui.page.home.newvm.NewPhotosViewModel
+import com.example.demo.meetphoto.ui.page.home.newvm.NewHomeViewModel
 import com.example.demo.meetphoto.ui.page.home.newvm.PhotosRepository
-import com.example.demo.meetphoto.ui.page.preview.PreviewStyleTwoActivity
+import com.example.demo.meetphoto.ui.page.preview.PreviewActivity
 import com.example.demo.meetphoto.ui.page.settings.SettingsActivity
 import com.google.android.material.color.MaterialColors
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -37,14 +37,7 @@ class MainActivity : NewBaseThemeActivity(R.layout.activity_main) {
 
     override val binding: ActivityMainBinding by viewBinding()
 
-    private val viewModel by lazy { NewPhotosViewModel(PhotosRepository()) }
-
-//    private val photosViewModel: PhotosViewModel by lazy {
-//        ViewModelProvider(this).get(PhotosViewModel::class.java)
-//    }
-//    private val searchViewModel: SearchViewModel by lazy {
-//        ViewModelProvider(this).get(SearchViewModel::class.java)
-//    }
+    private val viewModel by lazy { NewHomeViewModel(PhotosRepository()) }
 
     private lateinit var homeAdapter: HomeAdapter
 
@@ -89,12 +82,12 @@ class MainActivity : NewBaseThemeActivity(R.layout.activity_main) {
 
         homeAdapter.onHomeCarouselClickListener = object : HomeAdapter.HomeCarouselViewHolder.OnItemClickListener {
             override fun onClickItem(view: View, parentPosition: Int, childPosition: Int, photo: Photo) {
-                PreviewStyleTwoActivity.startActivity(this@MainActivity, photo)
+                PreviewActivity.startActivity(this@MainActivity, photo)
             }
         }
         homeAdapter.onHomePhotoCardClickListener = object : HomeAdapter.HomePhotoCardViewHolder.OnItemClickListener {
             override fun onClickItem(view: View, position: Int, photo: Photo) {
-                PreviewStyleTwoActivity.startActivity(this@MainActivity, photo)
+                PreviewActivity.startActivity(this@MainActivity, photo)
             }
         }
 

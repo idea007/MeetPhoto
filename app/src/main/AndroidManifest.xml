@@ -27,7 +27,7 @@
             android:exported="false"
             android:launchMode="standard" />
         <activity
-            android:name=".ui.page.preview.PreviewStyleTwoActivity"
+            android:name=".ui.page.preview.PreviewActivity"
             android:exported="false"
             android:theme="@style/Theme.PreviewTwoActivity" />
         <activity

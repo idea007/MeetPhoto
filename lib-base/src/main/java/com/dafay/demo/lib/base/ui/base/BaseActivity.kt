@@ -1,5 +1,6 @@
 package com.dafay.demo.lib.base.ui.base
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.PersistableBundle
 import androidx.annotation.LayoutRes
@@ -18,11 +19,14 @@ abstract class BaseActivity(@LayoutRes contentLayoutId: Int) : AppCompatActivity
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        resolveIntent(intent)
         initViews()
         initObserver()
         bindListener()
         initializeData()
     }
+
+    protected open fun resolveIntent(intent: Intent?) {}
 
     protected open fun initViews() {}
 

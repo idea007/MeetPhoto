@@ -29,13 +29,12 @@ import com.example.demo.meetphoto.data.model.PhotoQualityType
 import com.example.demo.meetphoto.data.model.PrefC
 import com.example.demo.meetphoto.databinding.ActivitySettingsBinding
 import com.example.demo.meetphoto.ui.base.BaseThemeActivity
-import com.example.demo.meetphoto.ui.helper.CacheHelper
 import com.example.demo.meetphoto.ui.helper.CommonMessage
 import com.example.demo.meetphoto.ui.page.settings.fragment.SelectDarkModeBottomSheetDialogFragment
 import com.example.demo.meetphoto.ui.page.settings.fragment.SelectLanguageBottomSheetDialogFragment
 import com.example.demo.meetphoto.ui.page.settings.fragment.SelectPictureQualityBottomSheetDialogFragment
-import com.example.demo.meetphoto.ui.view.SelectionCardView
 import com.example.demo.meetphoto.ui.page.webview.WebViewActivity
+import com.example.demo.meetphoto.ui.view.SelectionCardView
 import com.example.demo.meetphoto.utils.HandlerSingleton
 import com.example.demo.meetphoto.utils.ResUtil
 import com.example.demo.meetphoto.utils.UiUtil

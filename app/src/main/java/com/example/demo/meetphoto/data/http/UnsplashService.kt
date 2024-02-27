@@ -44,6 +44,17 @@ interface UnsplashService {
         @Query("order_by") order_by: String = "latest",
     ): List<Photo>?
 
+    @GET("/photos/{id}")
+   suspend fun getPhotoDetail(
+        @Path("id") id: String,
+    ): Photo?
+
+    //照片下载是，上报
+    @GET("/photos/{id}/download")
+    suspend fun photoDownload1(
+        @Path("id") id: String
+    ): DownloadResponse
+
 
     @GET("/photos")
     fun getPhotos(
