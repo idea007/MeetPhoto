@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  ~ This file is part of Doodle Android.
+  ~
+  ~ Doodle Android is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Doodle Android is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with Doodle Android. If not, see <http://www.gnu.org/licenses/>.
+  ~
+  ~ Copyright (c) 2019-2023 by Patrick Zedler
+  -->
+
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+
+    <string name="settings">设置</string>
+
+    <string name="settings_options">风格设置</string>
+    <string name="language">语言</string>
+    <string name="language_name">中文</string>
+    <string name="download_options">下载设置</string>
+    <string name="app_info_options">App 信息</string>
+    <string name="dark_mode">深色模式</string>
+    <string name="current_mode_night_no">当前为亮色模式</string>
+    <string name="current_mode_night_yes">当前为深色模式</string>
+    <string name="current_mode_follow_system">跟随系统</string>
+    <string name="color_theme">主题色</string>
+    <string name="vibrator_mode">振动模式</string>
+    <string name="system_haptics_turnedoff">当前系统设置不可用</string>
+    <string name="picture_quality">图片质量</string>
+    <string name="clear_cache">清除缓存</string>
+    <string name="app_version">版本</string>
+    <string name="developer">开发者</string>
+    <string name="privacy_policy">隐私政策</string>
+    <string name="turned_on">开启</string>
+    <string name="turned_off">关闭</string>
+
+    <string name="action_settings">设置</string>
+
+    <string name="other_language_system">跟随系统</string>
+    <string name="other_language_system_description">如其他语言不可用将使用英语</string>
+
+    <string name="action_open_link">打开链接</string>
+    <string name="unable_access">因不被许可，无法在 App 上访问，可直接点击右上角链接访问原网页</string>
+    <string name="something_wrong">哎呀! 出错了…</string>
+
+
+    <string name="recommend">编辑推荐</string>
+    <string name="wallpaper">壁纸</string>
+
+    <string name="light_mode">亮色模式</string>
+    <string name="light_mode_des">明亮的背景和深色的文字</string>
+    <string name="dark_mode_des">深色的背景和浅色的文字</string>
+    <string name="follow_system">跟随系统</string>
+    <string name="follow_system_des">跟随当前系统的深色模式</string>
+
+
+    <string name="dynamic">默认</string>
+    <string name="chahuahong">茶花红</string>
+    <string name="biandouzi">扁豆紫</string>
+    <string name="weizi">魏紫</string>
+    <string name="huaqing">花青</string>
+    <string name="heyelv">荷叶绿</string>
+
+
+    <string name="raw">原始</string>
+    <string name="full">完整</string>
+    <string name="regular">一般</string>
+    <string name="samll">小图</string>
+    <string name="thumb">缩略图</string>
+
+
+    <string name="downloading">下载中...</string>
+    <string name="setting_up">设置中...</string>
+    <string name="wallpaper_settings_success">壁纸设置成功</string>
+    <string name="wallpaper_settings_failed">壁纸设置失败</string>
+    <string name="image_saved_success">图片下载成功</string>
+    <string name="image_saved_failed">图片下载失败</string>
+
+    <string name="no_data">请求已达到今日限制</string>
+    <string name="tip_no_net">请在联网后重试</string>
+</resources>

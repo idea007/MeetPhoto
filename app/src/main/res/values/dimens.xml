@@ -1,0 +1,5 @@
+<resources>
+
+
+    <dimen name="max_content_width">640dp</dimen>
+</resources>

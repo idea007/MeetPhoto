@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.dafay.demo.lib.base.ui.widget.KtElasticDragDismissFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fl_drag_dismiss"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/colorSurface"
+    android:fitsSystemWindows="false"
+    app:dragDismissDistance="200dp"
+    app:dragDismissScale="0.75"
+    tools:ignore="MissingDefaultResource">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.dafay.demo.lib.base.ui.widget.FullZoomImageView
+            android:id="@+id/ziv_img"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </androidx.core.widget.NestedScrollView>
+
+    <RelativeLayout
+        android:id="@+id/rl_control"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible">
+
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:title=" ">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.dafay.demo.lib.base.ui.widget.CircularImageView
+                    android:id="@+id/iv_user"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_centerVertical="true"
+                    android:foreground="?attr/selectableItemBackgroundBorderless"
+                    android:src="@mipmap/ic_launcher" />
+
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="8dp"
+                    android:layout_toEndOf="@+id/iv_user">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/tv_user_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:textAppearance="?attr/textAppearanceTitleSmall" />
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tv_user_name"
+                        android:layout_marginTop="0dp">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/iv_unsplash_logo"
+                            android:layout_width="10dp"
+                            android:layout_height="12dp"
+                            android:layout_centerVertical="true"
+                            android:alpha="0.6"
+                            android:paddingTop="2dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/vector_unsplash"
+                            android:tint="?android:attr/textColorPrimary" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/tv_unsplash"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="4dp"
+                            android:layout_toEndOf="@+id/iv_unsplash_logo"
+                            android:alpha="0.6"
+                            android:text="unsplash.com"
+                            android:textAppearance="?attr/textAppearanceBodySmall" />
+
+                    </RelativeLayout>
+
+                </RelativeLayout>
+
+
+            </RelativeLayout>
+
+        </com.google.android.material.appbar.MaterialToolbar>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="32dp"
+            android:orientation="vertical">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/mcv_card_info"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginVertical="8dp"
+                android:backgroundTint="#60696969"
+                app:cardCornerRadius="24dp"
+                app:strokeWidth="0dp"
+                tools:cardBackgroundColor="?attr/colorSurfaceContainerHigh">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/vector_info_24dp"
+                    android:tint="@color/white" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/mcv_card_preview"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginVertical="8dp"
+                android:backgroundTint="#60696969"
+                android:visibility="gone"
+                app:cardCornerRadius="24dp"
+                app:strokeWidth="0dp"
+                tools:cardBackgroundColor="?attr/colorSurfaceContainerHigh">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/vector_preview_24dp"
+                    android:tint="@color/white" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/mcv_card_download"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginVertical="8dp"
+                android:backgroundTint="#60696969"
+                android:visibility="gone"
+                app:cardCornerRadius="24dp"
+                app:strokeWidth="0dp"
+                tools:cardBackgroundColor="?attr/colorSurfaceContainerHigh">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/vector_download_24dp"
+                    android:tint="@color/white" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+
+        </LinearLayout>
+    </RelativeLayout>
+
+</com.dafay.demo.lib.base.ui.widget.KtElasticDragDismissFrameLayout>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingDefaultResource">
+
+    <!-- 默认主题使用的颜色-介花紫-->
+    <color name="md_theme_primary">#F7B1DE</color>
+    <color name="md_theme_onPrimary">#4F1E42</color>
+    <color name="md_theme_primaryContainer">#69345A</color>
+    <color name="md_theme_onPrimaryContainer">#FFD8EE</color>
+    <color name="md_theme_secondary">#DDBECF</color>
+    <color name="md_theme_onSecondary">#3F2A37</color>
+    <color name="md_theme_secondaryContainer">#57404E</color>
+    <color name="md_theme_onSecondaryContainer">#FADAEB</color>
+    <color name="md_theme_tertiary">#F4B9A0</color>
+    <color name="md_theme_onTertiary">#4B2716</color>
+    <color name="md_theme_tertiaryContainer">#653C2A</color>
+    <color name="md_theme_onTertiaryContainer">#FFDBCD</color>
+    <color name="md_theme_error">#FFB4AB</color>
+    <color name="md_theme_onError">#690005</color>
+    <color name="md_theme_errorContainer">#93000A</color>
+    <color name="md_theme_onErrorContainer">#FFDAD6</color>
+    <color name="md_theme_background">#181215</color>
+    <color name="md_theme_onBackground">#EDDFE4</color>
+    <color name="md_theme_surface">#181215</color>
+    <color name="md_theme_onSurface">#EDDFE4</color>
+    <color name="md_theme_surfaceVariant">#4F444A</color>
+    <color name="md_theme_onSurfaceVariant">#D3C2CA</color>
+    <color name="md_theme_outline">#9B8D94</color>
+    <color name="md_theme_outlineVariant">#4F444A</color>
+    <color name="md_theme_inverseSurface">#EDDFE4</color>
+    <color name="md_theme_inverseOnSurface">#362E32</color>
+    <color name="md_theme_inversePrimary">#844C72</color>
+    <color name="md_theme_primaryFixed">#FFD8EE</color>
+    <color name="md_theme_onPrimaryFixed">#36072C</color>
+    <color name="md_theme_primaryFixedDim">#F7B1DE</color>
+    <color name="md_theme_onPrimaryFixedVariant">#69345A</color>
+    <color name="md_theme_secondaryFixed">#FADAEB</color>
+    <color name="md_theme_onSecondaryFixed">#281622</color>
+    <color name="md_theme_secondaryFixedDim">#DDBECF</color>
+    <color name="md_theme_onSecondaryFixedVariant">#57404E</color>
+    <color name="md_theme_tertiaryFixed">#FFDBCD</color>
+    <color name="md_theme_onTertiaryFixed">#321304</color>
+    <color name="md_theme_tertiaryFixedDim">#F4B9A0</color>
+    <color name="md_theme_onTertiaryFixedVariant">#653C2A</color>
+    <color name="md_theme_surfaceDim">#181215</color>
+    <color name="md_theme_surfaceBright">#3F373B</color>
+    <color name="md_theme_surfaceContainerLowest">#130C10</color>
+    <color name="md_theme_surfaceContainerLow">#201A1D</color>
+    <color name="md_theme_surfaceContainer">#251E22</color>
+    <color name="md_theme_surfaceContainerHigh">#2F282C</color>
+    <color name="md_theme_surfaceContainerHighest">#3B3337</color>
+
+
+</resources>

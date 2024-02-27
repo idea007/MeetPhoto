@@ -1,0 +1,129 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-parcelize'
+    id 'com.google.gms.google-services'
+    id 'com.google.firebase.crashlytics'
+}
+
+android {
+    namespace 'com.example.demo.meetphoto'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "com.idea.app.meetphoto"
+        minSdk 21
+        targetSdk 34
+        versionCode 1
+        versionName "1.0.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        resConfigs "en", "zh-rCN"
+    }
+
+    signingConfigs {
+        release {
+            storeFile file(rootProject.getRootDir().getAbsolutePath()+'/doc/key-store/meetphoto.jks')
+            storePassword 'meetphoto'
+            keyAlias 'key0'
+            keyPassword 'meetphoto'
+        }
+
+        debug {
+            storeFile file(rootProject.getRootDir().getAbsolutePath()+'/doc/key-store/meetphoto.jks')
+            storePassword 'meetphoto'
+            keyAlias 'key0'
+            keyPassword 'meetphoto'
+        }
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled true
+            // 启用资源压缩，需配合 minifyEnabled=true 使用
+            shrinkResources true
+            // 指定混淆保留规则
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            // 包签名
+            signingConfig signingConfigs.debug
+        }
+        release {
+            // 启用代码压缩、优化及混淆
+            minifyEnabled true
+            // 启用资源压缩，需配合 minifyEnabled=true 使用
+            shrinkResources true
+            // 指定混淆保留规则
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            // 包签名
+            signingConfig signingConfigs.release
+        }
+    }
+
+    applicationVariants.all { variant ->
+        variant.outputs.all { output ->
+            def outputFile = output.outputFile
+            if (outputFile != null && outputFile.name.endsWith('.apk')) {
+                def bType = variant.buildType.name
+                outputFileName = "${applicationId}_${versionName}_${bType}_${releaseTime()}.apk"
+            }
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        viewBinding true
+    }
+
+    sourceSets {
+        main.res.srcDirs += 'src/main/res-language'
+        main.res.srcDirs += 'src/main/res-logo'
+        main.res.srcDirs += 'src/main/res-illustration'
+    }
+}
+
+static def releaseTime() {
+    return new Date().format("MMdd_HHmm", TimeZone.getTimeZone("GMT+8"))
+}
+
+dependencies {
+
+    implementation 'androidx.core:core-ktx:1.9.0'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.11.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.6.2'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2'
+
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
+    implementation 'com.github.li-xiaojun:XPopup:2.10.0'
+
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+
+    // Firebase Start
+    // Import the Firebase BoM
+    implementation platform('com.google.firebase:firebase-bom:32.7.1')
+    // TODO: Add the dependencies for Firebase products you want to use
+    // When using the BoM, don't specify versions in Firebase dependencies
+    implementation 'com.google.firebase:firebase-analytics'
+    // Add the dependencies for any other desired Firebase products
+    // https://firebase.google.com/docs/android/setup#available-libraries
+    // Add the dependencies for the Crashlytics and Analytics libraries
+    // When using the BoM, you don't specify versions in Firebase library dependencies
+    implementation 'com.google.firebase:firebase-crashlytics-ktx'
+    implementation 'com.google.firebase:firebase-analytics-ktx'
+    // Firebase End
+
+    implementation 'com.github.bumptech.glide:glide:4.16.0'
+
+    implementation project(path: ':lib-base')
+
+}

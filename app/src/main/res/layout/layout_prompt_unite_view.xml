@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:id="@+id/rl_tip_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="16dp"
+        android:visibility="visible">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/iv_tip_img"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="120dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_page_nopermiss" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_tip_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/iv_tip_img"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp"
+            android:ellipsize="end"
+            android:maxLines="4"
+            android:paddingHorizontal="56dp"
+            android:text="@string/unable_access"
+            android:textAppearance="?attr/textAppearanceBodyMedium" />
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_click"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_tip_text"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp"
+            android:visibility="gone"
+            tools:text="请重试"
+            tools:visibility="visible" />
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

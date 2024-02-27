@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "329310241708",
+    "project_id": "meetphoto-dd794",
+    "storage_bucket": "meetphoto-dd794.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:329310241708:android:48cb2edd503f9122af7009",
+        "android_client_info": {
+          "package_name": "com.idea.app.meetphoto"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDtbIw45aElpRzdeIOLq5nnl-RB6FsI15o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
