@@ -7,7 +7,7 @@ object ConfigC {
     val CLIENT_ID="client_id"
     val PRIVACY_POLICY: String = "https://sites.google.com/view/meetphoto-privacy-policy/%E9%A6%96%E9%A1%B5"
     val DEMO_UNSPLASH_CLIENT_ID: String = "dg0yWpXZkFvjaARvvhfIadcU0HnN08nYjoQckbXYcpY"
-    val BASEURL_UNSPLASH: String = "dg0yWpXZkFvjaARvvhfIadcU0HnN08nYjoQckbXYcpY"
+    val BASEURL_UNSPLASH: String = "https://api.unsplash.com"
 }
 
 // sp key
@@ -27,9 +27,9 @@ object DefC {
 }
 
 object PAGE {
+    val PAGE_SIZE_THIRTY = 30
     val PAGE_SIZE_TEN = 10
     val PAGE_SIZE_TWENTY = 20
-    val PAGE_SIZE_THIRTY = 30
 }
 
 

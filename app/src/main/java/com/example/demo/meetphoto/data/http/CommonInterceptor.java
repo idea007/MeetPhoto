@@ -10,7 +10,7 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 /**
- * @Des
+ * @Des 添加请求参数拦截器
  * @Author lipengfei
  * @Date 2023/12/29
  */
@@ -18,7 +18,6 @@ public class CommonInterceptor implements Interceptor {
     @Override
     public Response intercept(Chain chain) throws IOException {
         Request oldRequest = chain.request();
-        // 添加请求参数
         HttpUrl.Builder authorizedUrlBuilder = oldRequest.url()
                 .newBuilder()
                 .scheme(oldRequest.url().scheme())

@@ -6,27 +6,23 @@ import android.os.Build
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.dafay.demo.lib.base.deprecaped.base.model.RequestState
+import by.kirich1409.viewbindingdelegate.viewBinding
+import com.dafay.demo.lib.base.net.Result
 import com.dafay.demo.lib.base.ui.widget.RecyclerViewInfiniteScrollListener
 import com.dafay.demo.lib.base.utils.RxBus
 import com.dafay.demo.lib.base.utils.dp2px
 import com.example.demo.biz.base.widgets.GridMarginDecoration
 import com.example.demo.meetphoto.R
-import com.example.demo.meetphoto.data.model.CollectionInfo
 import com.example.demo.meetphoto.data.model.Photo
-import com.example.demo.meetphoto.databinding.ActivityMainStyleFourBinding
-import com.example.demo.meetphoto.ui.base.BaseThemeActivity
+import com.example.demo.meetphoto.databinding.ActivityMainBinding
+import com.example.demo.meetphoto.ui.base.NewBaseThemeActivity
 import com.example.demo.meetphoto.ui.helper.CommonMessage
 import com.example.demo.meetphoto.ui.page.home.adapter.HomeAdapter
-import com.example.demo.meetphoto.ui.page.home.adapter.HomeItemInfo
-import com.example.demo.meetphoto.ui.page.home.adapter.HomeItemType
-import com.example.demo.meetphoto.ui.page.home.adapter.toHomeItemInfoPhotoList
-import com.example.demo.meetphoto.ui.page.home.viewmodel.PhotosViewModel
-import com.example.demo.meetphoto.ui.page.home.viewmodel.SearchViewModel
+import com.example.demo.meetphoto.ui.page.home.newvm.NewPhotosViewModel
+import com.example.demo.meetphoto.ui.page.home.newvm.PhotosRepository
 import com.example.demo.meetphoto.ui.page.preview.PreviewStyleTwoActivity
 import com.example.demo.meetphoto.ui.page.settings.SettingsActivity
 import com.google.android.material.color.MaterialColors
@@ -37,18 +33,20 @@ import io.reactivex.android.schedulers.AndroidSchedulers
  * https://gist.github.com/RicardAparicio/f41523daaa0edbe0b4399549fff4da3f
  * <a href="https://juejin.cn/post/7145021109564342309"> AppBarLayout 闪烁问题</a>
  */
+class MainActivity : NewBaseThemeActivity(R.layout.activity_main) {
 
-class MainStyleFourActivity : BaseThemeActivity<ActivityMainStyleFourBinding>() {
+    override val binding: ActivityMainBinding by viewBinding()
 
-    private val photosViewModel: PhotosViewModel by lazy {
-        ViewModelProvider(this).get(PhotosViewModel::class.java)
-    }
-    private val searchViewModel: SearchViewModel by lazy {
-        ViewModelProvider(this).get(SearchViewModel::class.java)
-    }
+    private val viewModel by lazy { NewPhotosViewModel(PhotosRepository()) }
+
+//    private val photosViewModel: PhotosViewModel by lazy {
+//        ViewModelProvider(this).get(PhotosViewModel::class.java)
+//    }
+//    private val searchViewModel: SearchViewModel by lazy {
+//        ViewModelProvider(this).get(SearchViewModel::class.java)
+//    }
 
     private lateinit var homeAdapter: HomeAdapter
-    private val homeItemList = ArrayList<HomeItemInfo<*>>()
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_main, menu)
@@ -66,6 +64,7 @@ class MainStyleFourActivity : BaseThemeActivity<ActivityMainStyleFourBinding>() 
         }
     }
 
+
     override fun initViews() {
         super.initViews()
         initToolBar()
@@ -77,7 +76,6 @@ class MainStyleFourActivity : BaseThemeActivity<ActivityMainStyleFourBinding>() 
     }
 
     private fun initRecyclerView() {
-        homeItemList.clear()
         homeAdapter = HomeAdapter()
         val staggeredGridLayoutManager = StaggeredGridLayoutManager(2, RecyclerView.VERTICAL)
         binding.rvRecyclerview.addItemDecoration(GridMarginDecoration(4.dp2px, 4.dp2px, 4.dp2px, 4.dp2px))
@@ -85,18 +83,18 @@ class MainStyleFourActivity : BaseThemeActivity<ActivityMainStyleFourBinding>() 
         binding.rvRecyclerview.adapter = homeAdapter
         binding.rvRecyclerview.addOnScrollListener(object : RecyclerViewInfiniteScrollListener(staggeredGridLayoutManager) {
             override fun onLoadMore() {
-                searchViewModel.loadMorePhotos()
+                viewModel.loadMore()
             }
         })
 
         homeAdapter.onHomeCarouselClickListener = object : HomeAdapter.HomeCarouselViewHolder.OnItemClickListener {
             override fun onClickItem(view: View, parentPosition: Int, childPosition: Int, photo: Photo) {
-                PreviewStyleTwoActivity.startActivity(this@MainStyleFourActivity, photo)
+                PreviewStyleTwoActivity.startActivity(this@MainActivity, photo)
             }
         }
         homeAdapter.onHomePhotoCardClickListener = object : HomeAdapter.HomePhotoCardViewHolder.OnItemClickListener {
             override fun onClickItem(view: View, position: Int, photo: Photo) {
-                PreviewStyleTwoActivity.startActivity(this@MainStyleFourActivity, photo)
+                PreviewStyleTwoActivity.startActivity(this@MainActivity, photo)
             }
         }
 
@@ -116,8 +114,7 @@ class MainStyleFourActivity : BaseThemeActivity<ActivityMainStyleFourBinding>() 
         )
         binding.srlRefresh.setOnRefreshListener(object : SwipeRefreshLayout.OnRefreshListener {
             override fun onRefresh() {
-                homeItemList.clear()
-                photosViewModel.refreshPhotos()
+                viewModel.refresh(getString(R.string.recommend), getString(R.string.wallpaper))
             }
         })
     }
@@ -130,73 +127,55 @@ class MainStyleFourActivity : BaseThemeActivity<ActivityMainStyleFourBinding>() 
                 when (it.type) {
                     CommonMessage.Type.CHANGE_THEME -> {
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                            restartToApply()
+                            this.recreate()
                         }
                     }
                 }
             })
 
-        photosViewModel.refreshPhotosLiveData.observe(this) {
-            if (it.state != RequestState.START) {
-                searchViewModel.refreshPhotos()
-            }
-            when {
-                it.state == RequestState.SUCCESS -> {
-                    val temp = ArrayList<HomeItemInfo<*>>()
-                    temp.add(HomeItemInfo<String>(HomeItemType.TYPE_TITLE, getString(R.string.recommend)))
-                    temp.add(HomeItemInfo<List<Photo>>(HomeItemType.TYPE_CAROUSEL, it.data))
-                    homeItemList.addAll(temp)
-
-                }
-            }
-        }
-
-        searchViewModel.refreshPhotosLiveData.observe(this) {
-            if (it.state != RequestState.START) {
-                binding.srlRefresh.setRefreshing(false)
-            }
-            when {
-                it.state == RequestState.SUCCESS -> {
+        viewModel.refreshHomeItemsLiveData.observe(this) {
+            when (it) {
+                is Result.Loading -> {}
+                is Result.Success -> {
                     binding.uvPrompt.visibility = View.GONE
-                    val temp = ArrayList<HomeItemInfo<*>>()
-                    temp.add(HomeItemInfo<String>(HomeItemType.TYPE_TITLE, getString(R.string.wallpaper)))
-                    temp.addAll(it.data.toHomeItemInfoPhotoList())
-                    homeItemList.addAll(temp)
-                    homeAdapter.setDatas(homeItemList)
-                }
-
-                it.state == RequestState.NO_NETWORK -> {
-                    if (homeItemList.size <= 0 && homeAdapter.datas.size<=0) {
-                        binding.uvPrompt.setTipImgAndTipText(R.drawable.ic_page_nonet, getString(R.string.tip_no_net))
-                        binding.uvPrompt.visibility = View.VISIBLE
-                    }
-                }
-
-                it.state == RequestState.NO_DATA -> {
-                    if (homeItemList.size <= 0 && homeAdapter.datas.size<=0) {
+                    if (it.value.isEmpty()) {
                         binding.uvPrompt.setTipImgAndTipText(R.drawable.ic_page_nodata, getString(R.string.no_data))
                         binding.uvPrompt.visibility = View.VISIBLE
+                    } else {
+                        homeAdapter.setDatas(it.value)
                     }
                 }
+
+                is Result.NetworkError -> {
+                    binding.uvPrompt.setTipImgAndTipText(R.drawable.ic_page_nonet, getString(R.string.tip_no_net))
+                    binding.uvPrompt.visibility = View.VISIBLE
+                }
+
+                else -> {
+                    binding.uvPrompt.setTipImgAndTipText(R.drawable.ic_page_nodata, getString(R.string.no_data))
+                    binding.uvPrompt.visibility = View.VISIBLE
+
+                }
+
             }
         }
 
-        searchViewModel.loadMorePhotosLiveData.observe(this) {
-            when {
-                it.state == RequestState.SUCCESS -> {
-                    homeAdapter.addDatas(it.data.toHomeItemInfoPhotoList())
+        viewModel.loadMoreHomeItemsLiveData.observe(this) {
+            when (it) {
+                is Result.Success -> {
+                    homeAdapter.addDatas(it.value)
+                }
+
+                else -> {
+
                 }
             }
         }
-    }
-
-    private fun restartToApply() {
-        this.recreate()
     }
 
 
     override fun initializeData() {
         super.initializeData()
-        photosViewModel.refreshPhotos()
+        viewModel.refresh(getString(R.string.recommend), getString(R.string.wallpaper))
     }
 }

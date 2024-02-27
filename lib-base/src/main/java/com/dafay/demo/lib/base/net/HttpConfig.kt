@@ -3,7 +3,7 @@ package com.example.demo.lib.net
 import okhttp3.Interceptor
 
 /**
- * @Des 请求配置统一管理
+ * @Des http 请求配置
  * @Author lipengfei
  * @Date 2023/11/27 18:06
  */

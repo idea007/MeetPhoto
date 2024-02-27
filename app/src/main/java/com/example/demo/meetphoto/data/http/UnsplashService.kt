@@ -28,6 +28,23 @@ interface UnsplashService {
     ): Observable<SearchResult>
 
 
+    @GET("/search/photos")
+    suspend fun searchPhotos1(
+        @Query("query") query: String,
+        @Query("page") page: Int,
+        @Query("per_page") per_page: Int,
+        @Query("order_by") order_by: String = "latest",
+        @Query("orientation") orientation: String = "portrait"
+    ): SearchResult
+
+    @GET("/photos")
+    suspend fun getPhotos1(
+        @Query("page") page: Int,
+        @Query("per_page") per_page: Int,
+        @Query("order_by") order_by: String = "latest",
+    ): List<Photo>?
+
+
     @GET("/photos")
     fun getPhotos(
         @Query("order_by") order_by: String = "latest",

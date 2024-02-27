@@ -8,6 +8,7 @@ import com.dafay.demo.lib.base.utils.debug
 import com.example.demo.biz.base.storage.sp.SPUtils
 import com.example.demo.lib.net.HttpConfig
 import com.example.demo.meetphoto.data.http.CommonInterceptor
+import com.example.demo.meetphoto.data.model.ConfigC.BASEURL_UNSPLASH
 import com.example.demo.meetphoto.data.model.PrefC
 import com.google.android.material.color.DynamicColors
 
@@ -42,7 +43,7 @@ class MyApplication : Application() {
     }
 
     private fun initLanguage() {
-        val code = SPUtils.findPreference<String>(PrefC.LANGUAGE, "")
+        val code = SPUtils.findPreference(PrefC.LANGUAGE, "")
         if (code.isNullOrEmpty()) {
             return
         }
@@ -55,7 +56,7 @@ class MyApplication : Application() {
 
     private fun initHttpConfig() {
         val config = HttpConfig.Config.build {
-            this.baseUrl = "https://api.unsplash.com"
+            this.baseUrl = BASEURL_UNSPLASH
             this.addInterceptor(CommonInterceptor())
         }
         HttpConfig.initConfig(config)

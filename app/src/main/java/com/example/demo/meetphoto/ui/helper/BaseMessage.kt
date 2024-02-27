@@ -6,7 +6,7 @@ package com.example.demo.meetphoto.ui.helper
  */
 open class BaseMessage {
 
-    //Map存储数据
+    // Map 存储数据
     private var ps: MutableMap<String, Any>? = null
 
     fun put(key: String?, value: Any): BaseMessage {
