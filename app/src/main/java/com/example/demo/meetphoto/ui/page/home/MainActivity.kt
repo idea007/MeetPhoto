@@ -12,13 +12,13 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.dafay.demo.lib.base.net.Result
 import com.dafay.demo.lib.base.ui.widget.RecyclerViewInfiniteScrollListener
+import com.dafay.demo.lib.base.ui.widgets.itemdecoration.GridMarginDecoration
 import com.dafay.demo.lib.base.utils.RxBus
 import com.dafay.demo.lib.base.utils.dp2px
-import com.example.demo.biz.base.widgets.GridMarginDecoration
 import com.example.demo.meetphoto.R
 import com.example.demo.meetphoto.data.model.Photo
 import com.example.demo.meetphoto.databinding.ActivityMainBinding
-import com.example.demo.meetphoto.ui.base.NewBaseThemeActivity
+import com.example.demo.meetphoto.ui.base.BaseThemeActivity
 import com.example.demo.meetphoto.ui.helper.CommonMessage
 import com.example.demo.meetphoto.ui.page.home.adapter.HomeAdapter
 import com.example.demo.meetphoto.ui.page.home.newvm.NewHomeViewModel
@@ -33,7 +33,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
  * https://gist.github.com/RicardAparicio/f41523daaa0edbe0b4399549fff4da3f
  * <a href="https://juejin.cn/post/7145021109564342309"> AppBarLayout 闪烁问题</a>
  */
-class MainActivity : NewBaseThemeActivity(R.layout.activity_main) {
+class MainActivity : BaseThemeActivity(R.layout.activity_main) {
 
     override val binding: ActivityMainBinding by viewBinding()
 
@@ -127,6 +127,9 @@ class MainActivity : NewBaseThemeActivity(R.layout.activity_main) {
             })
 
         viewModel.refreshHomeItemsLiveData.observe(this) {
+            if (!(it is Result.Loading)) {
+                binding.srlRefresh.setRefreshing(false)
+            }
             when (it) {
                 is Result.Loading -> {}
                 is Result.Success -> {
@@ -147,7 +150,6 @@ class MainActivity : NewBaseThemeActivity(R.layout.activity_main) {
                 else -> {
                     binding.uvPrompt.setTipImgAndTipText(R.drawable.ic_page_nodata, getString(R.string.no_data))
                     binding.uvPrompt.visibility = View.VISIBLE
-
                 }
 
             }
@@ -158,9 +160,7 @@ class MainActivity : NewBaseThemeActivity(R.layout.activity_main) {
                 is Result.Success -> {
                     homeAdapter.addDatas(it.value)
                 }
-
                 else -> {
-
                 }
             }
         }

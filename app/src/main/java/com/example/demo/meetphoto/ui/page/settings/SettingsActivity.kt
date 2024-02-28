@@ -5,6 +5,8 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
@@ -17,6 +19,7 @@ import androidx.annotation.IntRange
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.dafay.demo.lib.base.utils.AppUtils
 import com.dafay.demo.lib.base.utils.RxBus
 import com.dafay.demo.lib.base.utils.VibratorManager
@@ -33,9 +36,9 @@ import com.example.demo.meetphoto.ui.helper.CommonMessage
 import com.example.demo.meetphoto.ui.page.settings.fragment.SelectDarkModeBottomSheetDialogFragment
 import com.example.demo.meetphoto.ui.page.settings.fragment.SelectLanguageBottomSheetDialogFragment
 import com.example.demo.meetphoto.ui.page.settings.fragment.SelectPictureQualityBottomSheetDialogFragment
+import com.example.demo.meetphoto.ui.page.settings.viewmodel.SettingsViewModel
 import com.example.demo.meetphoto.ui.page.webview.WebViewActivity
 import com.example.demo.meetphoto.ui.view.SelectionCardView
-import com.example.demo.meetphoto.utils.HandlerSingleton
 import com.example.demo.meetphoto.utils.ResUtil
 import com.example.demo.meetphoto.utils.UiUtil
 import com.example.demo.meetphoto.utils.ViewUtil
@@ -43,12 +46,15 @@ import com.google.android.material.color.DynamicColors
 import com.google.android.material.color.utilities.Hct
 import com.google.android.material.divider.MaterialDivider
 
+class SettingsActivity : BaseThemeActivity(R.layout.activity_settings) {
 
-class SettingsActivity : BaseThemeActivity<ActivitySettingsBinding>() {
+    override val binding: ActivitySettingsBinding by viewBinding()
 
-    private val settingsViewModel: SettingsViewModel by lazy {
+    private val viewModel: SettingsViewModel by lazy {
         ViewModelProvider(this).get(SettingsViewModel::class.java)
     }
+
+    private val mainHandler by lazy { Handler(Looper.getMainLooper()) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         val bundleInstanceState = intent.getBundleExtra(ExtraC.SETTINGS_INSTANCE_BOUND)
@@ -64,19 +70,19 @@ class SettingsActivity : BaseThemeActivity<ActivitySettingsBinding>() {
 
     override fun initObserver() {
         super.initObserver()
-        settingsViewModel.isVibratorTurnedOnLiveData.observe(this) {
+        viewModel.isVibratorTurnedOnLiveData.observe(this) {
             binding.itemVibrator.binding.smSwitch.isChecked = it
         }
 
-        settingsViewModel.totalSizeLiveData.observe(this) {
+        viewModel.totalSizeLiveData.observe(this) {
             binding.itemClearCache.binding.tvDes.text = it
         }
     }
 
     override fun initializeData() {
         super.initializeData()
-        settingsViewModel.isVibratorTurnedOnLiveData.postValue(SPUtils.findPreference(PrefC.VIBRATOR_STATE, false))
-        settingsViewModel.queryTotalCache()
+        viewModel.isVibratorTurnedOnLiveData.postValue(SPUtils.findPreference(PrefC.VIBRATOR_STATE, false))
+        viewModel.queryTotalCache()
     }
 
     private fun initScrollViewPosition() {
@@ -210,7 +216,7 @@ class SettingsActivity : BaseThemeActivity<ActivitySettingsBinding>() {
             binding.tvTitle.text = context.getString(R.string.clear_cache)
             binding.mdDivider.visibility = View.VISIBLE
             binding.mcvCard.setOnClickListener {
-                settingsViewModel.clearCache()
+                viewModel.clearCache()
             }
         }
 
@@ -274,7 +280,6 @@ class SettingsActivity : BaseThemeActivity<ActivitySettingsBinding>() {
                 binding.smSwitch.isEnabled = true
             }
         }
-
     }
 
     // 重启应用
@@ -284,7 +289,7 @@ class SettingsActivity : BaseThemeActivity<ActivitySettingsBinding>() {
             putInt(ExtraC.SETTINGS_SCROLL_Y, binding.svSettings.scrollY)
             putInt(ExtraC.SETTINGS_COLOR_THEME_SCROLL_X, binding.svMoreColorTheme.scrollX)
         }
-        HandlerSingleton.mainHandler.postDelayed({
+        mainHandler.postDelayed({
             onSaveInstanceState(bundle)
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.S) {
                 finish()

@@ -7,12 +7,13 @@ import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.Toast
+import by.kirich1409.viewbindingdelegate.viewBinding
+import com.dafay.demo.lib.base.utils.error
 import com.example.demo.meetphoto.R
 import com.example.demo.meetphoto.databinding.ActivityWebViewBinding
 import com.example.demo.meetphoto.ui.base.BaseThemeActivity
-import com.dafay.demo.lib.base.utils.error
 
-class WebViewActivity : BaseThemeActivity<ActivityWebViewBinding>() {
+class WebViewActivity : BaseThemeActivity(R.layout.activity_web_view) {
 
     companion object {
         fun startActivity(activity: Activity, uri: Uri) {
@@ -23,6 +24,8 @@ class WebViewActivity : BaseThemeActivity<ActivityWebViewBinding>() {
     }
 
     lateinit var passUrl: String
+    override val binding: ActivityWebViewBinding by viewBinding()
+
     override fun resolveIntent(intent: Intent?) {
         super.resolveIntent(intent)
         val thum = intent?.getStringExtra("url")

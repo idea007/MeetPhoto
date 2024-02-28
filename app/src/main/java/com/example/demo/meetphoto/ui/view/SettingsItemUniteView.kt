@@ -7,7 +7,7 @@ import android.widget.RelativeLayout
 import com.example.demo.meetphoto.databinding.LayoutSettingsItemUniteViewBinding
 
 /**
- * @Des
+ * @Des 设置页通用 item
  * @Author m1studio
  * @Date 2024/1/7
  * <a href=" ">相关链接</a>

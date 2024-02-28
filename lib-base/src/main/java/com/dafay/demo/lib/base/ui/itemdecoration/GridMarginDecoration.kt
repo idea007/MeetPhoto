@@ -1,4 +1,4 @@
-package com.example.demo.biz.base.widgets
+package com.dafay.demo.lib.base.ui.widgets.itemdecoration
 
 import android.graphics.Rect
 import android.view.View

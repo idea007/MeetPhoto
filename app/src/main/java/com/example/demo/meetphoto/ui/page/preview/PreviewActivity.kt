@@ -40,24 +40,22 @@ import com.example.demo.meetphoto.data.model.PhotoQualityType.THUMB
 import com.example.demo.meetphoto.data.model.PrefC
 import com.example.demo.meetphoto.data.model.UrlsInfo
 import com.example.demo.meetphoto.databinding.ActivityPreviewBinding
-import com.example.demo.meetphoto.ui.base.NewBaseThemeActivity
+import com.example.demo.meetphoto.ui.base.BaseThemeActivity
 import com.example.demo.meetphoto.ui.page.home.newvm.NewPhotosViewModel
 import com.example.demo.meetphoto.ui.page.home.newvm.PhotosRepository
 import com.example.demo.meetphoto.ui.page.preview.fragment.PhotoInfoBottomSheetDialogFragment
 import com.example.demo.meetphoto.ui.page.webview.WebViewActivity
 import com.example.demo.meetphoto.ui.view.dismissLoadingExt
 import com.example.demo.meetphoto.ui.view.showLoadingExt
-import com.example.demo.meetphoto.utils.HandlerSingleton
 import com.example.demo.meetphoto.utils.StatusBarUtils
 import com.example.demo.meetphoto.utils.saveToAlbum
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import java.util.concurrent.Executors
 
 
-class PreviewActivity : NewBaseThemeActivity(R.layout.activity_preview) {
+class PreviewActivity : BaseThemeActivity(R.layout.activity_preview) {
 
     companion object {
         fun startActivity(activity: Activity, photo: Photo) {

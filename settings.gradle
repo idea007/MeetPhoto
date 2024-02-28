@@ -15,7 +15,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "demo-meetphoto"
+rootProject.name = "meetphoto"
 include ':app'
 include ':lib-base'
 
