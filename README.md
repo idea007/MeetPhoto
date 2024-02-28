@@ -12,9 +12,9 @@ In order to make your user experience more personalized, this application also p
 Whether you are a photography enthusiast, designer, or ordinary user, this application can bring you a brand new visual experience. Download and experience it now!
 
 ## Screenshots
-<a href="https://github.com/idea007/MeetPhoto/master/assets/screen1.png"><img src="assets/screen1.png" width="150px"/></a>
-<a href="https://github.com/idea007/MeetPhoto/master/assets/screen2.png"><img src="assets/screen2.png" width="150px"/></a>
-<a href="https://github.com/idea007/MeetPhoto/master/assets/screen3.png"><img src="assets/screen3.png" width="150px"/></a>
+<a href="https://github.com/idea007/MeetPhoto/tree/main/assets/screen1.jpg"><img src="assets/screen1.jpg" width="150px"/></a>
+<a href="https://github.com/idea007/MeetPhoto/tree/main/assets/screen2.jpg"><img src="assets/screen2.jpg" width="150px"/></a>
+<a href="https://github.com/idea007/MeetPhoto/tree/main/assets/screen3.jpg"><img src="assets/screen3.jpg" width="150px"/></a>
 
 ## License
 
