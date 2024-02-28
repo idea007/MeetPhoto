@@ -12,6 +12,7 @@ In order to make your user experience more personalized, this application also p
 Whether you are a photography enthusiast, designer, or ordinary user, this application can bring you a brand new visual experience. Download and experience it now!
 
 ## Preview Video
+https://github.com/idea007/MeetPhoto/tree/main/assets/preview_video.mp4
 <video width="360" height="808" controls>
     <source src="https://github.com/idea007/MeetPhoto/tree/main/assets/preview_video.mp4" type="video/mp4">
 </video>
