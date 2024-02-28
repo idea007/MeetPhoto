@@ -13,7 +13,7 @@ Whether you are a photography enthusiast, designer, or ordinary user, this appli
 
 ## Preview Video
 <video width="360" height="808" controls>
-    <source src="assets/preview_video.mp4" type="video/mp4">
+    <source src="https://github.com/idea007/MeetPhoto/tree/main/assets/preview_video.mp4" type="video/mp4">
 </video>
 
 ## Screenshots
