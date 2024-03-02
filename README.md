@@ -1,21 +1,29 @@
 
 
 ## MeetPhoto
-Welcome to the Android application I developed! This application is based on the Unsplash API and provides you with a wealth of high-quality image resources. Whether you are looking for inspiration, need beautiful wallpapers, or want to download pictures, this application can meet your needs.
+MeetPhoto is a photo browsing app developed based on Unsplash Api.
 
-The application adopts the latest Material You design style, bringing you a more modern and beautiful user interface. You can easily browse various categories of images, including natural landscapes, urban architecture, artistic creations, and more. With simple operations, you can download your favorite pictures locally and enjoy and share them anytime.
+It has the following functions:
+* Adopting Material You style
+* Image preview supports zooming in and out
+* The image preview page supports drag and drop to exit
+* Supports switching between Chinese and English
+* Supports dark mode
+* Support for selecting color themes
 
-In addition to browsing and downloading functions, this application also supports setting wallpapers. You can choose your favorite image and set it as your phone's wallpaper to add personality and beauty to your device.
-
-In order to make your user experience more personalized, this application also provides dark mode and multi theme functions. You can choose different themes according to your preferences to make the application interface more unique.
-
-Whether you are a photography enthusiast, designer, or ordinary user, this application can bring you a brand new visual experience. Download and experience it now!
+## Demo video
+[MeetPhoto preview video](https://youtube.com/shorts/6k5GgJHmlIY?feature=share)
 
 
 ## Screenshots
 <a href="https://github.com/idea007/MeetPhoto/tree/main/assets/screen1.jpg"><img src="assets/screen1.jpg" width="150px"/></a>
 <a href="https://github.com/idea007/MeetPhoto/tree/main/assets/screen2.jpg"><img src="assets/screen2.jpg" width="150px"/></a>
 <a href="https://github.com/idea007/MeetPhoto/tree/main/assets/screen3.jpg"><img src="assets/screen3.jpg" width="150px"/></a>
+
+## TO DO
+Areas to be optimized：
+* Language switching is not smooth
+* Overloading high-definition photos during thumbnail preview will reset the image size
 
 ## License
 
