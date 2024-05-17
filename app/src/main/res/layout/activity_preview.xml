@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.dafay.demo.lib.base.ui.widget.FullZoomImageView
+        <com.dafay.demo.lib.base.ui.widget.zoom.ZoomImageView
             android:id="@+id/ziv_img"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />

@@ -22,8 +22,8 @@ import com.bumptech.glide.request.target.SimpleTarget
 import com.bumptech.glide.request.target.Target
 import com.bumptech.glide.request.transition.Transition
 import com.dafay.demo.lib.base.net.Result
-import com.dafay.demo.lib.base.ui.widget.FullZoomImageView
 import com.dafay.demo.lib.base.ui.widget.KtElasticDragDismissFrameLayout
+import com.dafay.demo.lib.base.ui.widget.zoom.ZoomImageView
 import com.dafay.demo.lib.base.utils.ScreenUtils
 import com.dafay.demo.lib.base.utils.VibratorManager
 import com.dafay.demo.lib.base.utils.debug
@@ -151,9 +151,9 @@ class PreviewActivity : BaseThemeActivity(R.layout.activity_preview) {
         } else {
             tempMidZoom = screenRatio / imageRatio
         }
-        binding.zivImg.setMinScale(1f)
-        binding.zivImg.setMaxScale(tempMidZoom * 2f)
-        binding.zivImg.setMidScale(tempMidZoom)
+        binding.zivImg.setMinZoom(1f)
+        binding.zivImg.setMidZoom(tempMidZoom)
+        binding.zivImg.setMaxZoom(tempMidZoom * 2f)
     }
 
     private fun loadImage() {
@@ -200,7 +200,7 @@ class PreviewActivity : BaseThemeActivity(R.layout.activity_preview) {
             WebViewActivity.startActivity(this@PreviewActivity, uri)
         }
 
-        binding.zivImg.setOnViewTapListener(object : FullZoomImageView.OnViewTapListener {
+        binding.zivImg.viewTapListener = object : ZoomImageView.OnViewTapListener {
             override fun onViewTap(view: View?, x: Float, y: Float) {
                 VibratorManager.click()
                 if (binding.rlControl.visibility == View.VISIBLE) {
@@ -213,7 +213,7 @@ class PreviewActivity : BaseThemeActivity(R.layout.activity_preview) {
             override fun onLongClick(view: View?) {
             }
 
-        })
+        }
 
         binding.mcvCardInfo.setOnClickListener {
             PhotoInfoBottomSheetDialogFragment(passPhoto, object : PhotoInfoBottomSheetDialogFragment.OnClickListener {
