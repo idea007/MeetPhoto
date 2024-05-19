@@ -24,10 +24,6 @@ import com.dafay.demo.zoom.utils.translateBy
 import com.dafay.demo.zoom.utils.zoomBy
 import com.dafay.demo.zoom.utils.zoomTo
 
-/**
- * 实现功能
- * over zoom 处理（< minZoom)
- */
 class ZoomImageView @kotlin.jvm.JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
@@ -58,9 +54,9 @@ class ZoomImageView @kotlin.jvm.JvmOverloads constructor(
     private var currentY = 0
     private var overMinZoomRadio = 0.75f
 
-    private var scrollEdge = Edge.EDGE_BOTH
+    private var scrollEdge = Edge.EDGE_NONE
     private var allowParentInterceptOnEdge = true
-
+    private var pointerCount = 0
     var viewTapListener: OnViewTapListener? = null
 
     init {
@@ -75,11 +71,10 @@ class ZoomImageView @kotlin.jvm.JvmOverloads constructor(
                     return true
                 }
                 scaleGestureDetector.onTouchEvent(event)
+                pointerCount = event.pointerCount
                 when (event.actionMasked) {
                     MotionEvent.ACTION_DOWN -> {
-                        if (v.parent != null) {
-                            v.parent.requestDisallowInterceptTouchEvent(true)
-                        }
+                        parent?.requestDisallowInterceptTouchEvent(true)
                     }
 
                     MotionEvent.ACTION_UP,
@@ -293,11 +288,11 @@ class ZoomImageView @kotlin.jvm.JvmOverloads constructor(
     /**
      * 处理拖动（平移）事件
      */
-    private fun dealOnScroll(e1: MotionEvent?, e2: MotionEvent, distanceX: Float, distanceY: Float) {
+    private fun dealOnScroll(e1: MotionEvent, e2: MotionEvent, distanceX: Float, distanceY: Float) {
         if (allowParentInterceptOnEdge && !scaleGestureDetector.isInProgress) {
-            if (scrollEdge == Edge.EDGE_BOTH || (scrollEdge == Edge.EDGE_LEFT && -distanceX >= 1f) || (scrollEdge == Edge.EDGE_RIGHT && -distanceX <= -1f)) {
-                if (parent != null) {
-                    parent.requestDisallowInterceptTouchEvent(false)
+            if (pointerCount < 2) {
+                if (scrollEdge == Edge.EDGE_BOTH || (scrollEdge == Edge.EDGE_LEFT && -distanceX >= 1f) || (scrollEdge == Edge.EDGE_RIGHT && -distanceX <= -1f)) {
+                    parent?.requestDisallowInterceptTouchEvent(false)
                 }
             }
         }
@@ -409,7 +404,9 @@ class ZoomImageView @kotlin.jvm.JvmOverloads constructor(
         }
 
         override fun onScroll(e1: MotionEvent?, e2: MotionEvent, distanceX: Float, distanceY: Float): Boolean {
-            dealOnScroll(e1, e2, distanceX, distanceY)
+            e1?.let {
+                dealOnScroll(e1, e2, distanceX, distanceY)
+            }
             return super.onScroll(e1, e2, distanceX, distanceY)
         }
 
