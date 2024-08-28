@@ -7,7 +7,7 @@ import android.view.View
 import com.bumptech.glide.Glide
 import com.example.demo.meetphoto.data.model.Photo
 import com.example.demo.meetphoto.databinding.FragmentBottomSheetPhotoInfoBinding
-import com.example.demo.meetphoto.ui.page.settings.NumberUtils
+import com.dafay.demo.biz.settings.NumberUtils
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
@@ -43,10 +43,10 @@ class PhotoInfoBottomSheetDialogFragment : BottomSheetDialogFragment {
             .into(binding.ivUser)
         binding.tvUserName.text = passPhoto.user?.name
 
-        binding.tvLikes.text = if ((passPhoto.likes ?: 0) > 0) NumberUtils.amountConversion((passPhoto.likes ?: 0) + 0.0) else "Unknow"
+        binding.tvLikes.text = if ((passPhoto.likes ?: 0) > 0) com.dafay.demo.biz.settings.NumberUtils.amountConversion((passPhoto.likes ?: 0) + 0.0) else "Unknow"
         binding.tvDownloads.text =
-            if ((passPhoto.downloads ?: 0) > 0) NumberUtils.amountConversion((passPhoto.downloads ?: 0) + 0.0) else "Unknow"
-        binding.tvViews.text = if ((passPhoto.views ?: 0) > 0) NumberUtils.amountConversion((passPhoto.views ?: 0) + 0.0) else "Unknow"
+            if ((passPhoto.downloads ?: 0) > 0) com.dafay.demo.biz.settings.NumberUtils.amountConversion((passPhoto.downloads ?: 0) + 0.0) else "Unknow"
+        binding.tvViews.text = if ((passPhoto.views ?: 0) > 0) com.dafay.demo.biz.settings.NumberUtils.amountConversion((passPhoto.views ?: 0) + 0.0) else "Unknow"
         if (passPhoto.description.isNullOrEmpty()) {
             binding.tvDes.visibility = View.GONE
             binding.mdDividerDes.visibility = View.GONE

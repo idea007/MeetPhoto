@@ -18,13 +18,12 @@ import com.dafay.demo.lib.base.utils.dp2px
 import com.example.demo.meetphoto.R
 import com.example.demo.meetphoto.data.model.Photo
 import com.example.demo.meetphoto.databinding.ActivityMainBinding
-import com.example.demo.meetphoto.ui.base.BaseThemeActivity
-import com.example.demo.meetphoto.ui.helper.CommonMessage
+import com.dafay.demo.biz.settings.base.BaseThemeActivity
+import com.dafay.demo.biz.settings.helper.CommonMessage
 import com.example.demo.meetphoto.ui.page.home.adapter.HomeAdapter
 import com.example.demo.meetphoto.ui.page.home.newvm.NewHomeViewModel
 import com.example.demo.meetphoto.ui.page.home.newvm.PhotosRepository
 import com.example.demo.meetphoto.ui.page.preview.PreviewActivity
-import com.example.demo.meetphoto.ui.page.settings.SettingsActivity
 import com.google.android.material.color.MaterialColors
 import io.reactivex.android.schedulers.AndroidSchedulers
 
@@ -49,7 +48,7 @@ class MainActivity : BaseThemeActivity(R.layout.activity_main) {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_settings -> {
-                startActivity(Intent(this, SettingsActivity::class.java))
+                startActivity(Intent(this, com.dafay.demo.biz.settings.SettingsActivity::class.java))
                 return true
             }
 

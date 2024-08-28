@@ -19,3 +19,4 @@ rootProject.name = "meetphoto"
 include ':app'
 include ':lib-base'
 
+include ':biz-settings'

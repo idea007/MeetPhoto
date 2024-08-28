@@ -21,6 +21,9 @@ import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.SimpleTarget
 import com.bumptech.glide.request.target.Target
 import com.bumptech.glide.request.transition.Transition
+import com.dafay.demo.biz.settings.PhotoQualityType
+import com.dafay.demo.biz.settings.base.BaseThemeActivity
+import com.dafay.demo.biz.settings.webview.WebViewActivity
 import com.dafay.demo.lib.base.net.Result
 import com.dafay.demo.lib.base.ui.widget.KtElasticDragDismissFrameLayout
 import com.dafay.demo.lib.base.ui.widget.zoom.ZoomImageView
@@ -31,20 +34,12 @@ import com.example.demo.biz.base.storage.sp.SPUtils
 import com.example.demo.meetphoto.R
 import com.example.demo.meetphoto.data.model.ExtraC
 import com.example.demo.meetphoto.data.model.Photo
-import com.example.demo.meetphoto.data.model.PhotoQualityType
-import com.example.demo.meetphoto.data.model.PhotoQualityType.FULL
-import com.example.demo.meetphoto.data.model.PhotoQualityType.RAW
-import com.example.demo.meetphoto.data.model.PhotoQualityType.REGULAR
-import com.example.demo.meetphoto.data.model.PhotoQualityType.SMALL
-import com.example.demo.meetphoto.data.model.PhotoQualityType.THUMB
 import com.example.demo.meetphoto.data.model.PrefC
 import com.example.demo.meetphoto.data.model.UrlsInfo
 import com.example.demo.meetphoto.databinding.ActivityPreviewBinding
-import com.example.demo.meetphoto.ui.base.BaseThemeActivity
 import com.example.demo.meetphoto.ui.page.home.newvm.NewPhotosViewModel
 import com.example.demo.meetphoto.ui.page.home.newvm.PhotosRepository
 import com.example.demo.meetphoto.ui.page.preview.fragment.PhotoInfoBottomSheetDialogFragment
-import com.example.demo.meetphoto.ui.page.webview.WebViewActivity
 import com.example.demo.meetphoto.ui.view.dismissLoadingExt
 import com.example.demo.meetphoto.ui.view.showLoadingExt
 import com.example.demo.meetphoto.utils.StatusBarUtils
@@ -270,13 +265,13 @@ class PreviewActivity : BaseThemeActivity(R.layout.activity_preview) {
     }
 
     private fun downloadUrl(urls: UrlsInfo): String? {
-        val qualityType = PhotoQualityType.from(SPUtils.findPreference<String>(PrefC.PHOTO_QUALITY_DOWNLAOD, REGULAR.key))
+        val qualityType = PhotoQualityType.from(SPUtils.findPreference<String>(PrefC.PHOTO_QUALITY_DOWNLAOD, PhotoQualityType.REGULAR.key))
         when (qualityType) {
-            RAW -> return urls.raw
-            FULL -> return urls.full
-            REGULAR -> return urls.regular
-            SMALL -> return urls.small
-            THUMB -> return urls.thumb
+            PhotoQualityType.RAW -> return urls.raw
+            PhotoQualityType.FULL -> return urls.full
+            PhotoQualityType.REGULAR -> return urls.regular
+            PhotoQualityType.SMALL -> return urls.small
+            PhotoQualityType.THUMB -> return urls.thumb
         }
     }
 
