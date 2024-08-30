@@ -12,7 +12,6 @@ object ConfigC {
 
 // sp key
 object PrefC {
-    val COLOR_THEME: String = "color_theme"
     val LANGUAGE: String = "language"
     val DARK_MODE: String = "dark_mode"
     val VIBRATOR_STATE: String = "vibrator_state"
@@ -21,10 +20,6 @@ object PrefC {
     val PHOTO_QUALITY_DOWNLAOD: String = "photo_quality_downlaod"
 }
 
-// sp default
-object DefC {
-    val THEME: String = ""
-}
 
 object PAGE {
     val PAGE_SIZE_TWENTY = 20
