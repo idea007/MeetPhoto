@@ -20,7 +20,6 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:navigationIcon="@drawable/vector_logo_m4"
-            app:layout_scrollFlags="scroll|snap|enterAlways"
             app:navigationIconTint="?android:attr/colorPrimary"
             app:title="@string/app_name"
             app:titleTextColor="?android:attr/textColorPrimary">
